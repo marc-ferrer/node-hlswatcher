@@ -14,7 +14,7 @@
     "hls",
     "m3u8",
     "node",
-    "module"
+    "watcher"
   ],
   "author": "Marc Ferrer",
   "license": "MIT",
