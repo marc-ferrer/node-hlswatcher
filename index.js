@@ -48,9 +48,7 @@ Watcher.prototype.listenFile = function(){
 	});
 };
 
-
-
-Watcher.prototype.close = function(){
+Watcher.prototype.stop = function(){
 	fs.unwatchFile(this.file,"utf8");
 };
 
