@@ -48,8 +48,6 @@ Watcher.prototype.listenFile = function(){
 	});
 };
 
-
-
 Watcher.prototype.stop = function(){
 	fs.unwatchFile(this.file,"utf8");
 };
