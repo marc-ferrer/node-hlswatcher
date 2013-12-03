@@ -38,12 +38,9 @@ Watcher.prototype.__read = function(psize, csize){
 };
 
 Watcher.prototype.listenFile = function(){
-	console.log(this.file);
 	var self = this;
 	//curr, prev: fs.Stat Objects with inode info.
 	fs.watchFile(this.file, { persistent: true, interval: self.__interval }, function (curr, prev) {
-		console.log("last size : " + prev.size);
-		console.log("new size : " + curr.size);
 		self.__read(prev.size, curr.size);
 	});
 };
