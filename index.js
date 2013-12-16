@@ -32,8 +32,8 @@ Watcher.prototype.__read = function(psize, csize){
 					filesArray.push(lines[line]);
 				}
 			};
-            //Close file descriptor after read its content
-            fs.closeSync(fd);
+			//Close file descriptor after read its content
+			fs.closeSync(fd);
 			self.emit("change",filesArray);
 		});
 	});
