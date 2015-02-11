@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/MarcVancast/node-hlswatcher.git"
+    "url": "git://github.com/marc-ferre/node-hlswatcher.git"
   },
   "keywords": [
     "hls",
