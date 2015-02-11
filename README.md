@@ -28,26 +28,28 @@ and cloned with:
 
 ## Usage ####################################################################
 
-//require
+Require
+
 	var Watcher = require('hls-watcher');
 
-//after the require the first step is to create an object that represents your watcher.
-//the constructor requires a path to the m3u8 file you want to watch over.
-//A second parameter can be used to set the interval of time (in ms) used for checking the file,
-//if not provided or not a number the default value (5007) is used.
-	
+After the require the first step is to create an object that represents your watcher.
+the constructor requires a path to the m3u8 file you want to watch over.
+A second parameter can be used to set the interval of time (in ms) used for checking the file,
+if not provided or not a number the default value (5007) is used.
+
 	var w1 = new Watcher('PATH/to/file.m3u8');
 or
+
 	var w1 = new Watcher('PATH/to/file.m3u8',8000);
-	
-//Once you have the object you need to call the method listenFile()
+
+Once you have the object you need to call the method listenFile()
 
 	w1.listenFile();
 
-//When the module detects a change on the file it triggers an event "change" and returns
-//an array containing the names of the ts files that have been created since the last time.
-//Note that just the last created files are send, not all the ts files including the last ones,
-//if you need to remember all of them you should store them in your own program.
+When the module detects a change on the file it triggers an event "change" and returns
+an array containing the names of the ts files that have been created since the last time.
+Note that just the last created files are send, not all the ts files including the last ones,
+if you need to remember all of them you should store them in your own program.
 
 	w1.on("change", function(data){
 		//do things with ts files stored on data.
@@ -56,4 +58,3 @@ or
 //Remember to stop the listener at the end.
 
 	w1.stop();
-
