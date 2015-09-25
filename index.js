@@ -20,7 +20,7 @@ Watcher.prototype.__read = function(psize, csize){
 	var size = csize - psize;
 	var buffer = new Buffer(size);
 	var filesArray = new Array();
-	var durationRegEx = new RegExp("^#EXTINF:(\d*\.?\d+),$");
+	var durationRegEx = /^#EXTINF:(\d*\.?\d+),$/i;
 	var regExp = new RegExp("^[^#].+\.ts$",'i');
 
 	fs.open(self.file, 'r', function(err, fd){
@@ -29,8 +29,9 @@ Watcher.prototype.__read = function(psize, csize){
 			var string = buffer.toString();
 			var lines = string.split('\n');
 			var tsDuration = 0;
+			var m;
 			for (var line in lines) {
-				if(durationRegEx.exec(lines[line]) !== null){
+				if((m = durationRegEx.exec(lines[line])) !== null){
 					tsDuration = m[1];
 				}
 				if(regExp.test(lines[line])){
