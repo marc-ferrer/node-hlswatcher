@@ -20,16 +20,21 @@ Watcher.prototype.__read = function(psize, csize){
 	var size = csize - psize;
 	var buffer = new Buffer(size);
 	var filesArray = new Array();
+	var durationRegEx = new RegExp("^#EXTINF:(\d*\.?\d+),$");
+	var regExp = new RegExp("^[^#].+\.ts$",'i');
 
 	fs.open(self.file, 'r', function(err, fd){
 		fs.read(fd,buffer,0,size,psize,function(err, bytesRead, buffer){
 			if (err) throw err;
 			var string = buffer.toString();
 			var lines = string.split('\n');
+			var tsDuration = 0;
 			for (var line in lines) {
-				var regExp = new RegExp("^[^#].+\.ts$",'i');
+				if(durationRegEx.exec(lines[line]) !== null){
+					tsDuration = m[1];
+				}
 				if(regExp.test(lines[line])){
-					filesArray.push(lines[line]);
+					filesArray.push({fileName: lines[line], tsDuration: tsDuration});
 				}
 			};
 			//Close file descriptor after read its content
